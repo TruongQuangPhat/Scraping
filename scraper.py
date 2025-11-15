@@ -221,109 +221,6 @@ def get_versions(arxiv_id, tex_dir, stats=None, download_workers=1, decompress_w
     # Build list of versions to fetch
     versions = list(range(1, latest_version_num + 1))
 
-    # If no parallelism requested, keep original sequential behavior for stability
-    if download_workers <= 1 and decompress_workers <= 1:
-        for v in versions:
-            # Keep arXiv query id with dot for API calls, but use a hyphenated
-            # tag for filesystem folders (replace '.' with '-')
-            query_version_id = f"{arxiv_id}v{v}"
-            fs_version_tag = f"{arxiv_id.replace(".", "-")}v{v}"
-            # Fetch the specific version's metadata
-            search_version = arxiv.Search(id_list=[query_version_id])
-            try:
-                paper_version = arxiv_fetch_with_retry(client, search_version)
-            except Exception as e:
-                tqdm.write(f"    ERROR: Failed to fetch metadata for {query_version_id}. Skipping. Reason: {e}")
-                time.sleep(ARXIV_WAIT) # Sleep even on failure
-                continue
-
-            time.sleep(ARXIV_WAIT)
-            
-            if v == 1:
-                metadata["submission_date"] = paper_version.published.strftime("%Y-%m-%d")
-                metadata["revised_dates"].append(paper_version.updated.strftime("%Y-%m-%d"))
-            else:
-                metadata["revised_dates"].append(paper_version.updated.strftime("%Y-%m-%d"))
-
-            tar_filename = f"{query_version_id}.tar.gz"
-            tar_path = os.path.join(tex_dir, tar_filename)
-            extract_path = os.path.join(tex_dir, fs_version_tag)
-            os.makedirs(extract_path, exist_ok=True)
-
-            # Manual download from e-print endpoint (use arXiv query id with dot)
-            source_url = f"https://arxiv.org/e-print/{query_version_id}"
-            headers = {"User-Agent": "23120318-scraper"}
-            try:
-                with requests.get(source_url, stream=True, allow_redirects=True, timeout=30, headers=headers) as resp:
-                    if resp.status_code != 200:
-                        tqdm.write(f"    INFO: No source file at {source_url} (HTTP {resp.status_code}). Skipping.")
-                        time.sleep(ARXIV_WAIT)
-                        continue
-
-                    try:
-                        with open(tar_path, "wb") as fh:
-                            for chunk in resp.iter_content(chunk_size=1024*64):
-                                if chunk:
-                                    fh.write(chunk)
-                    except Exception as e:
-                        tqdm.write(f"    ERROR: Failed to write tarball {tar_path}: {e}")
-                        try:
-                            if os.path.exists(tar_path):
-                                os.remove(tar_path)
-                        except Exception:
-                            pass
-                        time.sleep(ARXIV_WAIT)
-                        continue
-            except requests.RequestException as e:
-                tqdm.write(f"    WARNING: Request to {source_url} failed: {e}")
-                time.sleep(ARXIV_WAIT)
-                continue
-
-            # record tar size before decompression
-            try:
-                if stats is not None and os.path.exists(tar_path):
-                    stats.add_size_before(file_size(tar_path))
-            except OSError:
-                pass
-
-            time.sleep(ARXIV_WAIT)
-
-            # Attempt decompression using the existing helper
-            extracted_ok = decompress_and_filter(tar_path, extract_path)
-
-            if not extracted_ok:
-                gz_path = tar_path
-                if tar_path.endswith(".tar.gz"):
-                    gz_path = tar_path[:-7] + ".gz"
-                try:
-                    if os.path.exists(tar_path) and gz_path != tar_path:
-                        try:
-                            os.replace(tar_path, gz_path)
-                        except Exception:
-                            try:
-                                os.rename(tar_path, gz_path)
-                            except Exception:
-                                gz_path = tar_path
-                    extracted_ok = decompress_and_filter(gz_path, extract_path)
-                    tar_path = gz_path
-                except Exception:
-                    extracted_ok = False
-
-            if extracted_ok and stats is not None:
-                try:
-                    final_bytes = dir_size(extract_path)
-                    stats.add_size_after(final_bytes)
-                    stats.add_version(1)
-                except OSError:
-                    pass
-
-            try:
-                os.remove(tar_path)
-            except OSError as e:
-                tqdm.write(f"    WARNING: Could not remove tarball: {tar_path}, {e}")
-
-        return metadata
-
     # --- Parallel path: download multiple version blobs concurrently (I/O bound)
     version_infos = []
     for v in versions:
@@ -337,7 +234,7 @@ def get_versions(arxiv_id, tex_dir, stats=None, download_workers=1, decompress_w
         # store v, query id, fs tag, tar_path, extract_path
         version_infos.append((v, query_version_id, fs_version_tag, tar_path, extract_path))
 
-    headers = {"User-Agent": "23120318-scraper"}
+    headers = dict(S2_HEADERS)
 
     def _download_version(version_id_str, tar_path):
         source_url = f"https://arxiv.org/e-print/{version_id_str}"
@@ -829,7 +726,7 @@ def main():
     parser.add_argument("--outdir", "-o", default="23120318", help="Output directory")
     parser.add_argument("--year-month", nargs="?", default="2409", help="Year and month code for arXiv IDs (e.g., '2409')")
     parser.add_argument("--start", type=int, default=5017, help="Start index for generated arXiv IDs (inclusive)")
-    parser.add_argument("--end", type=int, default=5017+99, help="End index for generated arXiv IDs (inclusive)")
+    parser.add_argument("--end", type=int, default=10016, help="End index for generated arXiv IDs (inclusive)")
     parser.add_argument("--download-workers", type=int, default=None, help="Number of parallel download worker threads (I/O)")
     parser.add_argument("--decompress-workers", type=int, default=None, help="Number of parallel decompress worker processes (CPU)")
     parser.add_argument("--no-prefetch-s2", dest="prefetch_s2", action="store_false", help="Disable S2 prefetching per-window")
