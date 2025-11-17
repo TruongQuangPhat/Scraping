@@ -16,8 +16,6 @@ import multiprocessing
 _LAST_S2_TIME = 0
 S2_HEADERS = {"User-Agent": "23120318-scraper"}
 
-# Timing configuration (can be changed via CLI in `main()`)
-# Defaults tuned to be polite to services; reduce if you want faster local measurements.
 ARXIV_WAIT = 3.1        # wait between arXiv metadata/source calls
 S2_MIN_WAIT = 1.1       # minimum spacing between Semantic Scholar requests
 S2_POST_SLEEP = 0.6     # short polite sleep between S2 POST chunks
@@ -36,12 +34,6 @@ def s2_wait_before_request():
 
 
 def arxiv_fetch_with_retry(client, search_obj, max_attempts=5, base_wait=2, max_wait=60):
-    """Fetch the first result from an arxiv.Search with retries on transient errors.
-
-    This wraps next(client.results(search_obj)) and will retry on transient
-    network errors or when the underlying library surfaces rate-limit
-    errors (common symptom: exception message mentioning 429 or "rate").
-    """
     attempts = 0
     last_exc = None
     while attempts < max_attempts:
@@ -74,24 +66,17 @@ def arxiv_fetch_with_retry(client, search_obj, max_attempts=5, base_wait=2, max_
 # removed complex window counting for clarity
 
 def decompress_and_filter(tar_path, extract_path):
-    """Decompress either a tar.gz archive or a single-file .gz containing
-    a TeX/BibTeX source. Returns True if .tex/.bib files were extracted.
-
-    The function is defensive: it will silently return False for blobs
-    that are not tar/gzip or that do not contain recognizable source.
-    """
-
     # Ensure target dir exists
     os.makedirs(extract_path, exist_ok=True)
 
-    # 1) Try to open as a tar.gz archive
+    # Try to open as a tar.gz archive
     try:
         with tarfile.open(tar_path, "r:gz") as tar:
             tar.extractall(path=extract_path)
     except Exception:
-        # 2) Not a tar.gz (or extraction failed). Try single-file gzip.
+        # Not a tar.gz (or extraction failed). Try single-file gzip.
         try:
-            with gzip.open(tar_path, 'rb') as gz:
+            with gzip.open(tar_path, "rb") as gz:
                 sample = gz.read(8192)
         except Exception:
             # invalid gzip header or unreadable -> treat as not extractable
@@ -103,17 +88,12 @@ def decompress_and_filter(tar_path, extract_path):
         is_pdf = sample.startswith(b"%PDF")
 
         if is_pdf:
-            # it's a PDF, not source
             return False
 
         if not (is_tex or is_bib):
             # not recognizable as source
             return False
 
-        # It's likely a single-source gzip; try to preserve the original
-        # filename stored in the gzip header (FNAME) if present. Fall back
-        # to the downloaded base name (without .gz) when the header lacks
-        # a name. Do not force a .tex/.bib extension.
         out_name = None
         try:
             with open(tar_path, "rb") as fh:
@@ -218,10 +198,9 @@ def get_versions(arxiv_id, tex_dir, stats=None, download_workers=1, decompress_w
         "total_versions": latest_version_num
     }
     
-    # Build list of versions to fetch
     versions = list(range(1, latest_version_num + 1))
 
-    # --- Parallel path: download multiple version blobs concurrently (I/O bound)
+    # download multiple version blobs concurrently (I/O bound)
     version_infos = []
     for v in versions:
         # query id uses dot (for arXiv), filesystem tag uses hyphen
@@ -374,7 +353,7 @@ def get_and_process_references(arxiv_id, s2_cache=None, stats=None):
                     pass
             return {}
         data = response.json()
-        raw_count = len(data.get('references') or []) if isinstance(data, dict) else 0
+        raw_count = len(data.get("references") or []) if isinstance(data, dict) else 0
         processed = process_s2_raw(arxiv_id, data, s2_cache=s2_cache)
         processed_count = len(processed) if processed else 0
         if stats is not None:
@@ -400,7 +379,6 @@ def get_and_process_references(arxiv_id, s2_cache=None, stats=None):
 
 
 def process_s2_raw(arxiv_id, data, s2_cache=None):
-    """Normalize S2 paper JSON into {arXiv-id-formatted: metadata} mapping."""
     raw_references = data.get("references") if isinstance(data, dict) else None
     if not raw_references:
         return {}
@@ -443,10 +421,6 @@ def process_s2_raw(arxiv_id, data, s2_cache=None):
 
 
 def fetch_s2_batches(arxiv_ids, s2_cache, batch_size=100, progress=None, post_chunk_size=100, stats=None):
-    """Fetch Semantic Scholar metadata for arXiv IDs using the batch API.
-    Fill `s2_cache` with processed reference mappings for each id. Returns a
-    short summary dict with counts for requested/success/empty/missing.
-    """
     if not arxiv_ids:
         return
 
@@ -596,7 +570,6 @@ def fetch_s2_batches(arxiv_ids, s2_cache, batch_size=100, progress=None, post_ch
 def run_scraper(arxiv_ids, dir, prefetch_s2=True, s2_batch_size=100, download_workers=1, decompress_workers=1):
     print(f"Starting scraper. Output directory: {dir}")
     os.makedirs(dir, exist_ok=True)
-    # initialize stats collector
     stats = StatsCollector()
     stats.start_total()
     # simple in-memory cache for Semantic Scholar results for this run
@@ -706,9 +679,7 @@ def run_scraper(arxiv_ids, dir, prefetch_s2=True, s2_batch_size=100, download_wo
                 tqdm.write("!!! Skipping this ID and moving to the next one.")
                 stats.end_paper(success=False)
                 continue
-    # No deferred-pass: batch prefetch should have filled s2_cache for missing IDs
 
-    # finalize stats and save report
     stats.end_total()
     # Save report_stats.json outside the per-run output folder (one level up)
     out_abs = os.path.abspath(dir)
@@ -719,7 +690,6 @@ def run_scraper(arxiv_ids, dir, prefetch_s2=True, s2_batch_size=100, download_wo
         tqdm.write(f"Saved stats to {stats_path}")
     except Exception as e:
         tqdm.write(f"    WARNING: Failed to save stats to {stats_path}: {e}")
-    # no persistent S2 cache file: we keep an in-memory cache for this run
 
 def main():
     parser = argparse.ArgumentParser(description="Scrape arXiv sources and references (parallel-ready).")
