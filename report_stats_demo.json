@@ -1,0 +1,16 @@
+{
+  "total_time_s": 28.620589899999686,
+  "total_papers": 2,
+  "success_papers": 2,
+  "success_rate": 1.0,
+  "total_versions": 8,
+  "total_references": 40,
+  "total_references_raw": 84,
+  "total_references_with_metadata": 40,
+  "avg_references_per_paper": 20.0,
+  "ref_metadata_success_rate": 0.47619047619047616,
+  "avg_time_per_paper_s": 13.496740600000066,
+  "peak_rss_bytes": 55361536,
+  "avg_tar_size_bytes": 1008206.25,
+  "avg_final_tex_size_bytes": 80430.25
+}

@@ -684,7 +684,7 @@ def run_scraper(arxiv_ids, dir, prefetch_s2=True, s2_batch_size=100, download_wo
     # Save report_stats.json outside the per-run output folder (one level up)
     out_abs = os.path.abspath(dir)
     parent_dir = os.path.dirname(out_abs) or out_abs
-    stats_path = os.path.join(parent_dir, "report_stats.json")
+    stats_path = os.path.join(parent_dir, "report_stats_demo.json")
     try:
         stats.save(stats_path)
         tqdm.write(f"Saved stats to {stats_path}")

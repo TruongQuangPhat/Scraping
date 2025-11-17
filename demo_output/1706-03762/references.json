@@ -1,0 +1,354 @@
+{
+    "1705-04304": {
+        "paper_title": "A Deep Reinforced Model for Abstractive Summarization",
+        "authors": [
+            "Romain Paulus",
+            "Caiming Xiong",
+            "R. Socher"
+        ],
+        "submission_date": "2017-05-11",
+        "semantic_scholar_id": "032274e57f7d8b456bd255fe76b909b2c1d7458e"
+    },
+    "1705-03122": {
+        "paper_title": "Convolutional Sequence to Sequence Learning",
+        "authors": [
+            "Jonas Gehring",
+            "Michael Auli",
+            "David Grangier",
+            "Denis Yarats",
+            "Yann Dauphin"
+        ],
+        "submission_date": "2017-05-08",
+        "semantic_scholar_id": "43428880d75b3a14257c3ee9bda054e61eb869c0"
+    },
+    "1703-03906": {
+        "paper_title": "Massive Exploration of Neural Machine Translation Architectures",
+        "authors": [
+            "D. Britz",
+            "Anna Goldie",
+            "Minh-Thang Luong",
+            "Quoc V. Le"
+        ],
+        "submission_date": "2017-03-11",
+        "semantic_scholar_id": "4550a4c714920ef57d19878e31c9ebae37b049b2"
+    },
+    "1703-03130": {
+        "paper_title": "A Structured Self-attentive Sentence Embedding",
+        "authors": [
+            "Zhouhan Lin",
+            "Minwei Feng",
+            "C. D. Santos",
+            "Mo Yu",
+            "Bing Xiang",
+            "Bowen Zhou",
+            "Yoshua Bengio"
+        ],
+        "submission_date": "2017-03-09",
+        "semantic_scholar_id": "204a4a70428f3938d2c538a4d74c7ae0416306d8"
+    },
+    "1703-10722": {
+        "paper_title": "Factorization tricks for LSTM networks",
+        "authors": [
+            "Oleksii Kuchaiev",
+            "Boris Ginsburg"
+        ],
+        "submission_date": "2017-02-17",
+        "semantic_scholar_id": "79baf48bd560060549998d7b61751286de062e2a"
+    },
+    "1702-00887": {
+        "paper_title": "Structured Attention Networks",
+        "authors": [
+            "Yoon Kim",
+            "Carl Denton",
+            "Luong Hoang",
+            "Alexander M. Rush"
+        ],
+        "submission_date": "2017-02-03",
+        "semantic_scholar_id": "13d9323a8716131911bfda048a40e2cde1a76a46"
+    },
+    "1701-06538": {
+        "paper_title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+        "authors": [
+            "Noam M. Shazeer",
+            "Azalia Mirhoseini",
+            "Krzysztof Maziarz",
+            "Andy Davis",
+            "Quoc V. Le",
+            "Geoffrey E. Hinton",
+            "J. Dean"
+        ],
+        "submission_date": "2017-01-23",
+        "semantic_scholar_id": "510e26733aaff585d65701b9f1be7ca9d5afc586"
+    },
+    "1610-10099": {
+        "paper_title": "Neural Machine Translation in Linear Time",
+        "authors": [
+            "Nal Kalchbrenner",
+            "L. Espeholt",
+            "K. Simonyan",
+            "Aäron van den Oord",
+            "Alex Graves",
+            "K. Kavukcuoglu"
+        ],
+        "submission_date": "2016-10-31",
+        "semantic_scholar_id": "98445f4172659ec5e891e031d8202c102135c644"
+    },
+    "1610-08613": {
+        "paper_title": "Can Active Memory Replace Attention?",
+        "authors": [
+            "Lukasz Kaiser",
+            "Samy Bengio"
+        ],
+        "submission_date": "2016-10-27",
+        "semantic_scholar_id": "735d547fc75e0772d2a78c46a1cc5fad7da1474c"
+    },
+    "1610-02357": {
+        "paper_title": "Xception: Deep Learning with Depthwise Separable Convolutions",
+        "authors": [
+            "François Chollet"
+        ],
+        "submission_date": "2016-10-07",
+        "semantic_scholar_id": "5b6ec746d309b165f9f9def873a2375b6fb40f3d"
+    },
+    "1609-08144": {
+        "paper_title": "Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation",
+        "authors": [
+            "Yonghui Wu",
+            "M. Schuster",
+            "Z. Chen",
+            "Quoc V. Le",
+            "Mohammad Norouzi",
+            "Wolfgang Macherey",
+            "M. Krikun",
+            "Yuan Cao",
+            "Qin Gao",
+            "Klaus Macherey",
+            "J. Klingner",
+            "Apurva Shah",
+            "Melvin Johnson",
+            "Xiaobing Liu",
+            "Lukasz Kaiser",
+            "Stephan Gouws",
+            "Yoshikiyo Kato",
+            "Taku Kudo",
+            "H. Kazawa",
+            "K. Stevens",
+            "George Kurian",
+            "Nishant Patil",
+            "Wei Wang",
+            "C. Young",
+            "Jason R. Smith",
+            "Jason Riesa",
+            "Alex Rudnick",
+            "O. Vinyals",
+            "G. Corrado",
+            "Macduff Hughes",
+            "J. Dean"
+        ],
+        "submission_date": "2016-09-26",
+        "semantic_scholar_id": "c6850869aa5e78a107c378d2e8bfa39633158c0c"
+    },
+    "1608-05859": {
+        "paper_title": "Using the Output Embedding to Improve Language Models",
+        "authors": [
+            "Ofir Press",
+            "Lior Wolf"
+        ],
+        "submission_date": "2016-08-20",
+        "semantic_scholar_id": "63e39cdf1ad884da6bc69096bb3413b5b1100559"
+    },
+    "1607-06450": {
+        "paper_title": "Layer Normalization",
+        "authors": [
+            "Jimmy Ba",
+            "J. Kiros",
+            "Geoffrey E. Hinton"
+        ],
+        "submission_date": "2016-07-21",
+        "semantic_scholar_id": "97fb4e3d45bb098e27e0071448b6152217bd35a5"
+    },
+    "1606-04199": {
+        "paper_title": "Deep Recurrent Models with Fast-Forward Connections for Neural Machine Translation",
+        "authors": [
+            "Jie Zhou",
+            "Ying Cao",
+            "Xuguang Wang",
+            "Peng Li",
+            "W. Xu"
+        ],
+        "submission_date": "2016-06-14",
+        "semantic_scholar_id": "b60abe57bc195616063be10638c6437358c81d1e"
+    },
+    "1602-02410": {
+        "paper_title": "Exploring the Limits of Language Modeling",
+        "authors": [
+            "R. Józefowicz",
+            "O. Vinyals",
+            "M. Schuster",
+            "Noam M. Shazeer",
+            "Yonghui Wu"
+        ],
+        "submission_date": "2016-02-07",
+        "semantic_scholar_id": "2f2d8f8072e5cc9b296fad551f65f183bdbff7aa"
+    },
+    "1602-07776": {
+        "paper_title": "Recurrent Neural Network Grammars",
+        "authors": [
+            "Chris Dyer",
+            "A. Kuncoro",
+            "Miguel Ballesteros",
+            "Noah A. Smith"
+        ],
+        "submission_date": "2016-02-01",
+        "semantic_scholar_id": "7345843e87c81e24e42264859b214d26042f8d51"
+    },
+    "1601-06733": {
+        "paper_title": "Long Short-Term Memory-Networks for Machine Reading",
+        "authors": [
+            "Jianpeng Cheng",
+            "Li Dong",
+            "Mirella Lapata"
+        ],
+        "submission_date": "2016-01-25",
+        "semantic_scholar_id": "13fe71da009484f240c46f14d9330e932f8de210"
+    },
+    "1512-03385": {
+        "paper_title": "Deep Residual Learning for Image Recognition",
+        "authors": [
+            "Kaiming He",
+            "X. Zhang",
+            "Shaoqing Ren",
+            "Jian Sun"
+        ],
+        "submission_date": "2015-12-10",
+        "semantic_scholar_id": "2c03df8b48bf3fa39054345bafabfeff15bfd11d"
+    },
+    "1512-00567": {
+        "paper_title": "Rethinking the Inception Architecture for Computer Vision",
+        "authors": [
+            "Christian Szegedy",
+            "Vincent Vanhoucke",
+            "Sergey Ioffe",
+            "Jonathon Shlens",
+            "Z. Wojna"
+        ],
+        "submission_date": "2015-12-02",
+        "semantic_scholar_id": "23ffaa0fe06eae05817f527a47ac3291077f9e58"
+    },
+    "1511-08228": {
+        "paper_title": "Neural GPUs Learn Algorithms",
+        "authors": [
+            "Lukasz Kaiser",
+            "I. Sutskever"
+        ],
+        "submission_date": "2015-11-25",
+        "semantic_scholar_id": "5e4eb58d5b47ac1c73f4cf189497170e75ae6237"
+    },
+    "1511-06114": {
+        "paper_title": "Multi-task Sequence to Sequence Learning",
+        "authors": [
+            "Minh-Thang Luong",
+            "Quoc V. Le",
+            "I. Sutskever",
+            "O. Vinyals",
+            "Lukasz Kaiser"
+        ],
+        "submission_date": "2015-11-19",
+        "semantic_scholar_id": "d76c07211479e233f7c6a6f32d5346c983c5598f"
+    },
+    "1508-07909": {
+        "paper_title": "Neural Machine Translation of Rare Words with Subword Units",
+        "authors": [
+            "Rico Sennrich",
+            "B. Haddow",
+            "Alexandra Birch"
+        ],
+        "submission_date": "2015-08-31",
+        "semantic_scholar_id": "1518039b5001f1836565215eb047526b3ac7f462"
+    },
+    "1508-04025": {
+        "paper_title": "Effective Approaches to Attention-based Neural Machine Translation",
+        "authors": [
+            "Thang Luong",
+            "Hieu Pham",
+            "Christopher D. Manning"
+        ],
+        "submission_date": "2015-08-17",
+        "semantic_scholar_id": "93499a7c7f699b6630a86fad964536f9423bb6d0"
+    },
+    "1412-7449": {
+        "paper_title": "Grammar as a Foreign Language",
+        "authors": [
+            "O. Vinyals",
+            "Lukasz Kaiser",
+            "Terry Koo",
+            "Slav Petrov",
+            "I. Sutskever",
+            "Geoffrey E. Hinton"
+        ],
+        "submission_date": "2014-12-23",
+        "semantic_scholar_id": "47570e7f63e296f224a0e7f9a0d08b0de3cbaf40"
+    },
+    "1412-6980": {
+        "paper_title": "Adam: A Method for Stochastic Optimization",
+        "authors": [
+            "Diederik P. Kingma",
+            "Jimmy Ba"
+        ],
+        "submission_date": "2014-12-22",
+        "semantic_scholar_id": "a6cb366736791bcccc5c8639de5a8f9636bf87e8"
+    },
+    "1412-3555": {
+        "paper_title": "Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling",
+        "authors": [
+            "Junyoung Chung",
+            "Çaglar Gülçehre",
+            "Kyunghyun Cho",
+            "Yoshua Bengio"
+        ],
+        "submission_date": "2014-12-10",
+        "semantic_scholar_id": "ac3ee98020251797c2b401e1389461df88e52e62"
+    },
+    "1409-3215": {
+        "paper_title": "Sequence to Sequence Learning with Neural Networks",
+        "authors": [
+            "I. Sutskever",
+            "O. Vinyals",
+            "Quoc V. Le"
+        ],
+        "submission_date": "2014-09-10",
+        "semantic_scholar_id": "cea967b59209c6be22829699f05b8b1ac4dc092d"
+    },
+    "1409-0473": {
+        "paper_title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+        "authors": [
+            "Dzmitry Bahdanau",
+            "Kyunghyun Cho",
+            "Yoshua Bengio"
+        ],
+        "submission_date": "2014-09-01",
+        "semantic_scholar_id": "fa72afa9b2cbc8f0d7b05d52548906610ffbb9c5"
+    },
+    "1406-1078": {
+        "paper_title": "Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation",
+        "authors": [
+            "Kyunghyun Cho",
+            "B. V. Merrienboer",
+            "Çaglar Gülçehre",
+            "Dzmitry Bahdanau",
+            "Fethi Bougares",
+            "Holger Schwenk",
+            "Yoshua Bengio"
+        ],
+        "submission_date": "2014-06-03",
+        "semantic_scholar_id": "0b544dfe355a5070b60986319a3f51fb45d1348e"
+    },
+    "1308-0850": {
+        "paper_title": "Generating Sequences With Recurrent Neural Networks",
+        "authors": [
+            "Alex Graves"
+        ],
+        "submission_date": "2013-08-04",
+        "semantic_scholar_id": "6471fd1cbc081fb3b7b5b14d6ab9eaaba02b5c17"
+    }
+}
