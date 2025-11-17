@@ -684,7 +684,7 @@ def run_scraper(arxiv_ids, dir, prefetch_s2=True, s2_batch_size=100, download_wo
     # Save report_stats.json outside the per-run output folder (one level up)
     out_abs = os.path.abspath(dir)
     parent_dir = os.path.dirname(out_abs) or out_abs
-    stats_path = os.path.join(parent_dir, "report_stats_demo.json")
+    stats_path = os.path.join(parent_dir, "report_stats.json")
     try:
         stats.save(stats_path)
         tqdm.write(f"Saved stats to {stats_path}")
@@ -696,7 +696,7 @@ def main():
     parser.add_argument("--outdir", "-o", default="23120318", help="Output directory")
     parser.add_argument("--year-month", nargs="?", default="2409", help="Year and month code for arXiv IDs (e.g., '2409')")
     parser.add_argument("--start", type=int, default=5017, help="Start index for generated arXiv IDs (inclusive)")
-    parser.add_argument("--end", type=int, default=10016, help="End index for generated arXiv IDs (inclusive)")
+    parser.add_argument("--end", type=int, default=5017+99, help="End index for generated arXiv IDs (inclusive)")
     parser.add_argument("--download-workers", type=int, default=None, help="Number of parallel download worker threads (I/O)")
     parser.add_argument("--decompress-workers", type=int, default=None, help="Number of parallel decompress worker processes (CPU)")
     parser.add_argument("--no-prefetch-s2", dest="prefetch_s2", action="store_false", help="Disable S2 prefetching per-window")
